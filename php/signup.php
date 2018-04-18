@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-
+echo "Connection successful";
 $sql = "INSERT INTO user(email_id, first_name, last_name, password, phone_number, user_type) VALUES ($_POST['email'],$_POST['fname'],$_POST['lname'],$_POST['pwd'],$_POST['pno'],'u')";
 
 echo $sql;
