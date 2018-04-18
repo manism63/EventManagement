@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO user(email_id, first_name, last_name, password, phone_number, user_type) VALUES ($_POST['email'],['fname'],['lname'],['pwd'],['pno'],['u'])";
+$sql = "INSERT INTO user(email_id, first_name, last_name, password, phone_number, user_type) VALUES ($_POST['email'],$_POST['fname'],$_POST['lname'],$_POST['pwd'],$_POST['pno'],'u')";
 
 echo $sql;
 if ($conn->query($sql) === TRUE) {
