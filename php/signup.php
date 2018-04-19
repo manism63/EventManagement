@@ -13,7 +13,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 echo "Connection successful";
-$sql = "INSERT INTO user(email_id, first_name, last_name, password, phone_number, user_type) VALUES('" . $_POST['email'] . '\', \'' . $_POST['fname'] . '\', \'' .  $_POST['lname']. '\', \'' . $_POST['pwd']. '\', \'' . $_POST['pno'] . '\','. '\'u\'' . ')';
+// $pwd = password_hash($_POST['pno'], PASSWORD_DEFAULT);
+$pwd = md5($_POST["pwd"]);
+// $pwd = substr($pwd, 0, 60);
+$sql = "INSERT INTO user(email_id, first_name, last_name, password, phone_number, user_type) VALUES('" . $_POST['email'] . '\', \'' . $_POST['fname'] . '\', \'' .  $_POST['lname']. '\', \'' . $pwd. '\', \'' . $_POST['pno'] . '\','. '\'u\'' . ')';
 
 echo $sql;
 if ($conn->query($sql) === TRUE) {

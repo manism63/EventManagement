@@ -1,4 +1,20 @@
 
 
+<html>
 
-<h1> Show all events here </h1>
+<body>
+
+<a href="../php/logout.php"> logout </a>
+<?php
+session_start();
+?>
+
+<h2> Show all events here </h2>
+
+<?php
+echo $_SESSION['emai_id'] . "<br>";
+echo $_SESSION['first_name'] . " " . $_SESSION['last_name'];
+?>
+</body>
+
+</html>
