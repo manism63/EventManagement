@@ -1,0 +1,9 @@
+#content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    width: 100px;
+    flex-basis: 25%;
+}

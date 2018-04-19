@@ -1,20 +1,69 @@
 
-
-<html>
-
-<body>
-
-<a href="../php/logout.php"> logout </a>
 <?php
 session_start();
 ?>
 
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="../css/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<a href="../php/logout.php"> logout </a>
+<a href="./createEvent.html"> All Events </a>
+
+
 <h2> Show all events here </h2>
 
 <?php
-echo $_SESSION['emai_id'] . "<br>";
-echo $_SESSION['first_name'] . " " . $_SESSION['last_name'];
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "eventmanagement";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	echo "Connection failed";
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connection successful";
+
+$sql = "SELECT event_id, event_header, event_desc, event_date, venue, no_people from event";
+echo "<br> <div id='content'>";
+
+$result = $conn->query($sql); 
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) { ?>
+			<div class="row">
+			  <div class="col-md-4">
+				<div class="thumbnail">
+				  <a href= <?php echo "\"http://localhost/EventManagement/html/event.html?event_id=" . $row['event_id'] . " \">" ?>
+					<img alt="manish" height='30px' width='40px' src="../img/event.jpg"/>
+					<p> <?php echo $row['event_header'] ?> </p>
+					<p> <?php echo $row['event_date'] ?> </p>
+				  </a>
+				</div>
+			  </div>
+			  
+			</div> 
+	
+	<?php
+    }
+} else {
+    echo "0 results";
+}
+
+
+
 ?>
+</div>
 </body>
 
 </html>
