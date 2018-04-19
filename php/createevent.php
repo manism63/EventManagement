@@ -1,5 +1,6 @@
 <?php
 // $servername = "149.160.213.45";
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
