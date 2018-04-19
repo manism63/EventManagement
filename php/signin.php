@@ -42,7 +42,11 @@ if ($result->num_rows == 1) {
 		echo "window.location = \"http://localhost/EventManagement/html/all_events.html\"";
 		echo "</script>";	
 	} else{
+		
 		echo "<h1> password not correct </h1>";
+		echo "<script type=\"text/javascript\">";
+		echo "window.location = \"http://localhost/EventManagement/html/login.html?status=1\"";
+		echo "</script>";
 	}
 
 } else {

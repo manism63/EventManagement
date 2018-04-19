@@ -20,6 +20,13 @@
 
 </head>
 <body>
+<?php
+	if (array_key_exists('status', $_GET)) {
+		echo "<div style=\"background-color:red;color:white;padding:5px;\">";
+		echo "<p>Incorrect Password</p>";
+		echo "</div>";
+	}
+?>
 <div class="container">
   <h2>Sign Up</h2>
   <form action="../php/signin.php" method="post">
