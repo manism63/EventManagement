@@ -35,6 +35,8 @@ if ($conn->connect_error) {
 echo "Connection successful";
 
 $sql = "SELECT event_id, event_header, event_desc, event_date, venue, no_people from event";
+$sql_my_events = "SELECT event_id, event_header, event_desc, event_date, venue, no_people from event WHERE event_id IN (SELECT event_id FROM userlist WHERE STATUS = '1' AND email_id=". $_SESSION['email_id'] . ")";
+
 echo "<br> <div id='content'>";
 
 $result = $conn->query($sql); 
@@ -57,11 +59,8 @@ if ($result->num_rows > 0) {
 	<?php
     }
 } else {
-    echo "0 results";
+    echo "No events to show";
 }
-
-
-
 ?>
 </div>
 </body>
