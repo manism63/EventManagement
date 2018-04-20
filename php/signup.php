@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 	echo "Connection failed";
     die("Connection failed: " . $conn->connect_error);
 } 
-echo "Connection successful";
+// echo "Connection successful";
 // $pwd = password_hash($_POST['pno'], PASSWORD_DEFAULT);
 $pwd = md5($_POST["pwd"]);
 // $pwd = substr($pwd, 0, 60);

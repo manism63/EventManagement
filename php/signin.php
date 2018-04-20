@@ -34,9 +34,10 @@ if ($result->num_rows == 1) {
 	if($pwd == $row['password']){
 		echo "id: " . $row["email_id"]. " - Name: " . $row["first_name"]. " " . $row["last_name"]. "<br>";
 		session_start();
-		$_SESSION['emai_id'] = $row["email_id"];
+		$_SESSION['email_id'] = $row["email_id"];
 		$_SESSION['first_name'] = $row["first_name"];
 		$_SESSION['last_name'] = $row["last_name"];
+		$_SESSION['user_type'] = $row['user_type'];
 		
 		echo "<script type=\"text/javascript\">";
 		echo "window.location = \"http://localhost/EventManagement/html/all_events.html\"";
