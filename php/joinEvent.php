@@ -1,6 +1,3 @@
-
-
-
 <?php
 	session_start();
 
@@ -13,10 +10,10 @@
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
 	if ($conn->connect_error) {
-		echo "Connection failed";
+		//echo "Connection failed";
 		die("Connection failed: " . $conn->connect_error);
 	} 
-	echo "Connection successful";
+	//echo "Connection successful";
 
 	$sqlUsers = "select count(*) as count from userlist where event_id = " ;
 	$sqlUsers = $sqlUsers . $_POST['event_id'];
@@ -26,7 +23,7 @@
 	if($countresult['count'] < $_POST['count']){
 		$sql = $sql . "1 )";
 		$_SESSION['joinEventMessage'] = "added";
-		echo "<script>console.log( 'Debug Objects: " . $sql . "' );</script>";		
+		//echo "<script>console.log( 'Debug Objects: " . $sql . "' );</script>";		
 	}else{
 		$sql = $sql . "0 )";	
 		$_SESSION['joinEventMessage'] = "waiting";

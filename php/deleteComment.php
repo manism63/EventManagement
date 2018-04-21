@@ -10,10 +10,10 @@
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
 	if ($conn->connect_error) {
-		echo "Connection failed";
+		//echo "Connection failed";
 		die("Connection failed: " . $conn->connect_error);
 	} 
-	echo "Connection successful";
+	//echo "Connection successful";
 
 
 	$sql = "delete from comments where comment_id = " . $_POST['comment_id'] ;
