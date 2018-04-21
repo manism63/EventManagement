@@ -1,5 +1,7 @@
 <?php
 // $servername = "149.160.213.45";
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -38,20 +40,24 @@ if ($result->num_rows == 1) {
 		$_SESSION['first_name'] = $row["first_name"];
 		$_SESSION['last_name'] = $row["last_name"];
 		$_SESSION['user_type'] = $row['user_type'];
-		
+		$_SESSION['loginMessage'] = 'Y';
 		echo "<script type=\"text/javascript\">";
 		echo "window.location = \"http://localhost/EventManagement/html/all_events.html\"";
 		echo "</script>";	
 	} else{
-		
+		$_SESSION['loginMessage'] = 'IncorrectPass';
 		echo "<h1> password not correct </h1>";
 		echo "<script type=\"text/javascript\">";
-		echo "window.location = \"http://localhost/EventManagement/html/login.html?status=1\"";
+		echo "window.location = \"http://localhost/EventManagement/html/login.html\"";
 		echo "</script>";
 	}
 
 } else {
-    echo  "<br>" . "0 results";
+	$_SESSION['loginMessage'] = 'UserDoesntExists';
+    echo "<h1> User doesn't exists </h1>";
+	echo "<script type=\"text/javascript\">";
+	echo "window.location = \"http://localhost/EventManagement/html/login.html\"";
+	echo "</script>";
 }
 
 $conn->close();

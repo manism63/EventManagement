@@ -19,9 +19,14 @@
 	echo $sql;
 	if ($conn->query($sql) === TRUE) {
 	    echo "New record created successfully";
-	} else {
+	    $_SESSION['reqMessage'] = 'Y';
+	} 
+	else {
 	    echo "Error: " . $sql . "<br>" . $conn->error;
+	    $_SESSION['reqMessage'] = 'N';
 	}
-
-	$conn->close();
+		$conn->close();
+		echo "<script type=\"text/javascript\">";
+		echo "window.location = \"http://localhost/EventManagement/html/requestEvent.html\"";
+		echo "</script>";
 ?>

@@ -16,6 +16,7 @@ session_start();
 
 <a href="../php/logout.php"> logout </a>
 <a href="./createEvent.html"> All Events </a>
+<a href="./my_events.html"> My Events </a>
 
 
 <h2> Show all events here </h2>
@@ -61,6 +62,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "No events to show";
 }
+$conn->close();
 ?>
 </div>
 </body>

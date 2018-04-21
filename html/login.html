@@ -20,14 +20,11 @@
 
 </head>
 <body>
-<?php
-	if (array_key_exists('status', $_GET)) {
-		echo "<div style=\"background-color:red;color:white;padding:5px;\">";
-		echo "<p>Incorrect Password</p>";
-		echo "</div>";
-	}
-?>
 <div class="container">
+  <?php 
+    session_start(); 
+    include_once('../php/menu.php'); 
+  ?>
   <h2>Login </h2>
   <form action="../php/signin.php" method="post">
     <div class="form-group row">
@@ -44,6 +41,43 @@
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+
+
+<?php
+  
+  if (isset($_SESSION['loginMessage']))
+  { 
+    if($_SESSION['loginMessage']=='IncorrectPass') 
+    { 
+     ?> <br><br>
+        <div class = "container">
+          <div class='alert alert-danger' role='alert'>Incorrect Password
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+        </div>
+    <?php
+    } 
+    else if($_SESSION['loginMessage']=='UserDoesntExists')
+    { ?>
+      <br><br>
+        <div class = "container">
+          <div class='alert alert-danger' role='alert'>User Doesn't Exists
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+        </div>
+     <?php 
+    }
+    unset($_SESSION['loginMessage']);
+  }
+  session_unset();
+  session_destroy();
+?>
+
+
 </div>
 
 </body>
