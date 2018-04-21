@@ -31,7 +31,6 @@ if ($conn->connect_error) {
 } 
 
 $sql = "SELECT event_id, event_header, event_desc, event_date, venue, no_people from event";
-$sql_my_events = "SELECT event_id, event_header, event_desc, event_date, venue, no_people from event WHERE event_id IN (SELECT event_id FROM userlist WHERE STATUS = '1' AND email_id=". $_SESSION['email_id'] . ")";
 
 echo "<br> <div id='content'>";
 
@@ -40,10 +39,10 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) { ?>
 			<div class="row">
-			  <div class="col-md-4">
+			  <div class="col-md-9">
 				<div class="thumbnail">
 				  <a href= <?php echo "\"http://localhost/EventManagement/php/event_page.html?event_id=" . $row['event_id'] . " \">" ?>
-					<img alt="manish" height='30px' width='40px' src="../img/event.jpg"/>
+					<img alt="manish" height='30px' width='50px' src="../img/event.jpg"/>
 					<p> <?php echo $row['event_header'] ?> </p>
 					<p> <?php echo $row['event_date'] ?> </p>
 				  </a>

@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) { ?>
 			<div class="row">
-			  <div class="col-md-4">
+			  <div class="col-md-9">
 				<div class="thumbnail">
 				  <a href= <?php echo "\"http://localhost/EventManagement/php/event_page.html?event_id=" . $row['event_id'] . " \">" ?>
 					<img alt="manish" height='30px' width='40px' src="../img/event.jpg"/>

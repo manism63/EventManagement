@@ -9,7 +9,7 @@
     <?php if(isset($_SESSION['user_type'])) 
       { 
     ?>
-        <li><a href="./all_events.html"> All Events </a></li>
+        <li><a href="../html/all_events.html"> All Events </a></li>
     		<?php if($_SESSION['user_type']=='u') { ?> <li><a href="../html/my_events.html"> My Events </a></li> <?php } ?>
     		<?php if($_SESSION['user_type']=='a') { ?><li><a href="../html/createEvent.html"> Create Event </a></li><?php } ?>
     		<?php if($_SESSION['user_type']=='u') { ?><li><a href="../html/requestEvent.html"> Request Event </a></li><?php } ?>

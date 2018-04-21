@@ -21,7 +21,6 @@ echo "Connection successful";
 $sql = "Select email_id, first_name, last_name, password, phone_number, user_type from 	user where email_id = '" .  $_POST['email'] . "'" ;
 
 
-
 echo $sql . "<br>";
 $result = $conn->query($sql);
 if ($result->num_rows == 1) {
@@ -35,7 +34,7 @@ if ($result->num_rows == 1) {
 	// if(password_verify($pwd, $row['password'])) {
 	if($pwd == $row['password']){
 		echo "id: " . $row["email_id"]. " - Name: " . $row["first_name"]. " " . $row["last_name"]. "<br>";
-		session_start();
+		
 		$_SESSION['email_id'] = $row["email_id"];
 		$_SESSION['first_name'] = $row["first_name"];
 		$_SESSION['last_name'] = $row["last_name"];
