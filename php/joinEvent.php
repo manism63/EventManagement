@@ -18,7 +18,11 @@
 	} 
 	echo "Connection successful";
 
+	$sqlUsers = "select count(*) as count from userlist where event_id = " ;
+	$sqlUsers = $sqlUsers . $_POST['event_id'];
+	$countresult = $conn->query($sql);
 	
+	if(
 
 	$sql = "INSERT INTO userlist(email_id, event_id, status) VALUES ( \"";
 	$sql = $sql . $_POST['email_id'] . "\", " . $_POST['event_id'] . ", ";
