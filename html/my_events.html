@@ -12,13 +12,8 @@ session_start();
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<a href="../php/logout.php"> logout </a>
-<a href="./createEvent.html"> All Events </a>
-<a href="./my_events.html"> My Events </a>
-
-
-<h2> Show all events here </h2>
+<div class = 'container'>
+<?php include_once('../php/menu.php'); ?>
 
 <?php
 $servername = "localhost";
@@ -37,7 +32,7 @@ $sql_my_approved_events = "SELECT event_id, event_header, event_desc, event_date
 
 $sql_my_waiting_events = "SELECT event_id, event_header, event_desc, event_date, venue, no_people from event WHERE event_id IN (SELECT event_id FROM userlist WHERE STATUS = '0' AND email_id='". $_SESSION['email_id'] . "')";
 
-echo "<div class = 'row'>Events you are enrolled in</div><br> <div id='content'>";
+echo "<h2>Events you are enrolled in</h2><br> <div id='content'>";
 
 $result = $conn->query($sql_my_approved_events);
 
@@ -65,7 +60,7 @@ if ($result->num_rows > 0) {
 }
 
 $result2 = $conn->query($sql_my_waiting_events);
-echo "</div><br><div class = 'row'>Events you are on waiting list</div> <div id='content'>"; 
+echo "</div><br><h2>Events you are on waiting list</h2><br> <div id='content'>"; 
 if ($result2->num_rows > 0) {
     // output data of each row
     while($row = $result2->fetch_assoc()) { ?>
@@ -91,6 +86,7 @@ echo "</div>";
 $conn->close();
 ?>
 </div>
+
 </body>
 
 </html>
