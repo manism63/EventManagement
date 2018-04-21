@@ -5,7 +5,7 @@ session_start();
 
 <html>
 <head>
-<title>All Events</title>
+<title>User List</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <link rel="stylesheet" href="../css/style.css">
@@ -15,7 +15,7 @@ session_start();
 <body>
 <div class = "container">
 <?php include_once('../php/menu.php'); ?>
-<h2> All Events </h2>
+<h2> User List </h2>
 
 <?php
 $servername = "localhost";
@@ -30,7 +30,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT event_id, event_header, event_desc, event_date, venue, no_people from event";
+$sql = "SELECT email_id, first_name, last_name, password, phone_number, user_type FROM user WHERE user_type='u'";
 
 echo "<br> <div id='content'>";
 
@@ -41,10 +41,10 @@ if ($result->num_rows > 0) {
 			<div class="row">
 			  <div class="col-md-9">
 				<div class="thumbnail">
-				  <a href= <?php echo "\"http://localhost/EventManagement/php/event_page.html?event_id=" . $row['event_id'] . " \">" ?>
-					<img alt="manish" height='30px' width='50px' src="../img/event.jpg"/>
-					<p> <?php echo $row['event_header'] ?> </p>
-					<p> <?php echo $row['event_date'] ?> </p>
+				  <a href= <?php echo "\"http://localhost/EventManagement/php/user_page.html?email_id=" . $row['email_id'] . " \">" ?>
+					<img alt="User" height='30px' width='50px' src="../img/user.jpg"/>
+					<p> <?php echo $row['first_name'] . ' ' . $row['last_name'] ?> </p>
+					<p> <?php echo $row['email_id'] ?> </p>
 				  </a>
 				</div>
 			  </div>

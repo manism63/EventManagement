@@ -38,15 +38,39 @@ if ($result->num_rows > 0) {
 	echo "0 results";
 }
 
-$sqllist = "select first_name, last_name, L.event_id from userlist L, user U where L.email_id = U.email_id and L.event_id =" . $_GET['event_id'] ;
+$sqllist = "select first_name, last_name, L.event_id, U.email_id from userlist L, user U where L.email_id = U.email_id and L.event_id =" . $_GET['event_id'] ;
 $resultlist = $conn->query($sqllist);
 
 ?>
 
 <div class="container">
   <?php include_once('../php/menu.php'); ?>
+  
+	<?php 	
+		$status = 0;
+		if ($resultlist->num_rows > 0) {
+			while($flist = $resultlist->fetch_assoc()) { 
+				if($flist['email_id'] == $_SESSION['email_id']){
+					$status = 1;
+					break;
+				}
+			}
+		} 
+		if($status == 0){
+		?>  
+		  <form action="../php/joinEvent.php" method="post">
+			<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
+			<input type="hidden" name="email_id" value=<?php echo $_SESSION['email_id'] ?>  >
+			<input type="submit" value="JoinEvent">
+		  </form>	  
+	  <?php
+		}
+	  ?>
+  
+  
+  
   <h2>Event Page</h2>
-  <form action="<?php echo $_SERVER['REQUEST_URI']   ?>">
+  <form action="../php/deleteUser.php" method="post">
     <div class="form-group">
       <label for="name">Name:</label>
       <p> <?php echo $row['event_header'] ?> </p>
@@ -70,10 +94,18 @@ $resultlist = $conn->query($sqllist);
 	<div class="form-group">
       <label for="comments">People List</label>
 	  <p> <?php 	  
+	  $resultlist = $conn->query($sqllist);
 		if ($resultlist->num_rows > 0) {
 			// output data of each row
 			while($subs = $resultlist->fetch_assoc()) { 
-				echo $subs['first_name'] . " " . $subs['last_name'] . ", ";
+				echo $subs['first_name'] . " " . $subs['last_name'] ;
+				if($_SESSION['user_type'] == 'a'){ ?>
+						<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
+						<input type="hidden" name="email_id" value=<?php echo $subs['email_id'] ?>  >
+						<input type="submit" value="X">
+				<?php
+				}
+				echo ",";
 			}
 		}  
 	  ?> </p>
@@ -119,16 +151,20 @@ if ($comments->num_rows > 0) {
 					</div>
 					<div class="comment-content">
 						<?php echo $comment['comment'] ?>
+						<div align='right'>
+							<?php 
+								if($_SESSION['user_type'] == 'a' || $comment['email_id'] == $_SESSION['email_id']){ ?>
+							<form action="./deleteComment.php" method="post">
+								<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
+								<input type="hidden" name="comment_id" value=<?php echo $comment['comment_id'] ?>  >
+								<input type="submit" value="X">
+							</form>
+							<?php } ?>
+						</div>
 					</div>
+					
 				</div>
-				<?php 
-					if($_SESSION['user_type'] == 'a' || $comment['email_id'] == $_SESSION['email_id']){ ?>
-				<form action="./deleteComment.php">
-					<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
-					<input type="hidden" name="comment_id" value=<?php echo $comment['comment_id'] ?>  >
-					<input type="submit" value="X">
-				</form>
-				<?php } ?>
+				
 			</div>
 			
 			
