@@ -119,16 +119,20 @@ if ($comments->num_rows > 0) {
 					</div>
 					<div class="comment-content">
 						<?php echo $comment['comment'] ?>
+						<div align='right'>
+							<?php 
+								if($_SESSION['user_type'] == 'a' || $comment['email_id'] == $_SESSION['email_id']){ ?>
+							<form action="./deleteComment.php" method="post">
+								<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
+								<input type="hidden" name="comment_id" value=<?php echo $comment['comment_id'] ?>  >
+								<input type="submit" value="X">
+							</form>
+							<?php } ?>
+						</div>
 					</div>
+					
 				</div>
-				<?php 
-					if($_SESSION['user_type'] == 'a' || $comment['email_id'] == $_SESSION['email_id']){ ?>
-				<form action="./deleteComment.php" method="post">
-					<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
-					<input type="hidden" name="comment_id" value=<?php echo $comment['comment_id'] ?>  >
-					<input type="submit" value="X">
-				</form>
-				<?php } ?>
+				
 			</div>
 			
 			
