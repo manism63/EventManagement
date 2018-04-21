@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
 			  <div class="col-md-9">
 				<div class="thumbnail">
 				  <a href= <?php echo "\"http://localhost/EventManagement/php/user_page.html?email_id=" . $row['email_id'] . " \">" ?>
-					<img alt="User" height='30px' width='50px' src="../img/user.jpg"/>
+					<img src="../img/default-img.jpg" class="comment-avatar"></img>
 					<p> <?php echo $row['first_name'] . ' ' . $row['last_name'] ?> </p>
 					<p> <?php echo $row['email_id'] ?> </p>
 				  </a>

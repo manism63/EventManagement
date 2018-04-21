@@ -124,8 +124,11 @@ $resultlist = $conn->query($sqllist);
 						<input type="hidden" name="email_id" value=<?php echo $subs['email_id'] ?>  >
 						<input type="submit" class="btn btn-danger btn-xs" value="X">
 				<?php
-				}
 				echo "  ";
+				}else{
+					echo ", ";
+				}
+				
 			}
 		}  
 	  ?> </p>
