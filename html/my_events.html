@@ -52,14 +52,14 @@ if ($result->num_rows > 0) {
 			  </div>
 			  
 			</div> 
+		
 		</div>
-	
 	<?php
     }
 } else {
     echo "No events to show";
 }
-
+echo "</div><div class= 'container'>";
 $result2 = $conn->query($sql_my_waiting_events);
 echo "<br><br><h2>Events you are on waiting list</h2><br> <div id='content'>"; 
 if ($result2->num_rows > 0) {
@@ -83,11 +83,10 @@ if ($result2->num_rows > 0) {
 } else {
     echo "<div class = 'row'>No events to show</div>";
 }
-echo "</div>";
 $conn->close();
 ?>
 
-
+</div>
 </body>
 
 </html>

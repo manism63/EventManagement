@@ -1,0 +1,66 @@
+
+<?php
+session_start();
+?>
+
+<html>
+<head>
+<title>User List</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="../css/style.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class = "container">
+<?php include_once('../php/menu.php'); ?>
+<h2> User List </h2>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "eventmanagement";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	echo "Connection failed";
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT email_id, first_name, last_name, password, phone_number, user_type FROM user WHERE user_type='u'";
+
+echo "<br> <div id='content'>";
+
+$result = $conn->query($sql); 
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) { ?>
+			<div class="row">
+			  <div class="col-md-9">
+				<div class="thumbnail">
+				  <a href= <?php echo "\"http://localhost/EventManagement/php/user_page.html?email_id=" . $row['email_id'] . " \">" ?>
+					<img alt="User" height='30px' width='50px' src="../img/user.jpg"/>
+					<p> <?php echo $row['first_name'] . ' ' . $row['last_name'] ?> </p>
+					<p> <?php echo $row['email_id'] ?> </p>
+				  </a>
+				</div>
+			  </div>
+			  
+			</div> 
+	
+	<?php
+    }
+} else {
+    echo "No events to show";
+}
+$conn->close();
+?>
+</div>
+</div>
+
+</body>
+
+</html>
