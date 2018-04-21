@@ -93,12 +93,8 @@ $resultlist = $conn->query($sqllist);
 		}
 		?>
   
-  <h2>Event Page</h2>
+  <h3><?php echo $row['event_header'] ?></h3>
   <form action="../php/deleteUser.php" method="post">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <p> <?php echo $row['event_header'] ?> </p>
-    </div>
     <div class="form-group">
       <label for="desc">Description:</label>
 	  <p> <?php echo $row['event_desc'] ?> </p>
@@ -126,10 +122,14 @@ $resultlist = $conn->query($sqllist);
 				if($_SESSION['user_type'] == 'a'){ ?>
 						<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
 						<input type="hidden" name="email_id" value=<?php echo $subs['email_id'] ?>  >
-						<input type="submit" value="X">
+						<input type="submit" class="btn btn-danger btn-xs" value="X">
 				<?php
 				}
+<<<<<<< HEAD
+				echo "  ";
+=======
 				echo ", ";
+>>>>>>> cc551af549b6c1f953ea48abb7a129b740117699
 			}
 		}  
 	  ?> </p>
@@ -164,7 +164,7 @@ if ($comments->num_rows > 0) {
 		<li>
 			<div class="comment-main-level">
 				
-				<div class="comment-avatar"></div>
+				<img src="../img/default-img.jpg" class="comment-avatar"></img>
 				
 				<div class="comment-box">
 					<div class="comment-head">
@@ -181,7 +181,7 @@ if ($comments->num_rows > 0) {
 							<form action="./deleteComment.php" method="post">
 								<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
 								<input type="hidden" name="comment_id" value=<?php echo $comment['comment_id'] ?>  >
-								<input type="submit" value="X">
+								<input type="submit" class="btn btn-danger btn-xs" value="X">
 							</form>
 							<?php } ?>
 						</div>
