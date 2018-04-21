@@ -10,10 +10,10 @@
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
 	if ($conn->connect_error) {
-		echo "Connection failed";
+		//echo "Connection failed";
 		die("Connection failed: " . $conn->connect_error);
 	} 
-	echo "Connection successful";
+	//echo "Connection successful";
 
 	
 
@@ -21,7 +21,7 @@
 	$sql = $sql . " and email_id= \"" . $_POST['email_id'] . "\"";
 	$result = $conn->query($sql);
 	
-	echo "<script>console.log( 'Debug Objects: " . $sql . "' );</script>";
+	//echo "<script>console.log( 'Debug Objects: " . $sql . "' );</script>";
 	
 	$conn->close();
 	echo "<script type=\"text/javascript\">";

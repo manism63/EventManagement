@@ -11,7 +11,7 @@ $dbname = "eventmanagement";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-	echo "Connection failed";
+	//echo "Connection failed";
     die("Connection failed: " . $conn->connect_error);
 } 
 
@@ -30,9 +30,9 @@ $sql = $sql .  $_SESSION['email_id'] . "\",";
 $sql = $sql .  $_POST['event_id'] ;
 $sql = $sql .  ", \"" . $_POST['comment'] . "\")" ;  
 
-echo $sql;
+//echo $sql;
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    //echo "New record created successfully";
 	$conn->close();
 	echo "<script type=\"text/javascript\">";
 	echo "window.location = \"http://localhost/EventManagement/php/event_page.html?event_id=".$_POST['event_id']."\"";
@@ -41,7 +41,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 	$conn->close();
 	echo "<script type=\"text/javascript\">";
-	
+	echo "window.location = \"http://localhost/EventManagement/php/event_page.html?event_id=".$_POST['event_id']."\"";
 	echo "</script>";
 }
 

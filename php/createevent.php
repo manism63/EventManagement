@@ -10,19 +10,19 @@ $dbname = "eventmanagement";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-	echo "Connection failed";
+	//echo "Connection failed";
     die("Connection failed: " . $conn->connect_error);
 } 
-echo "Connection successful";
+//echo "Connection successful";
 $sql = "INSERT INTO event(event_header, event_desc, event_date, venue, no_people) VALUES('" . $_POST['eventName'] . '\', \'' . $_POST['desc'] . '\', \'' .  $_POST['date'] . ' ' . $_POST['time'] . ':00\', \'' . $_POST['venue'] . '\','. '\'' . $_POST['nopeople']. '\'' . ')';
 
-echo $sql;
+//echo $sql;
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    //echo "New record created successfully";
 	$_SESSION['createEventMessage'] = 'EventCreatedSuccessfully';
 
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    //echo "Error: " . $sql . "<br>" . $conn->error;
     $_SESSION['createEventMessage'] = 'EventDidntCreate';	
 }
 
