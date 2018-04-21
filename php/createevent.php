@@ -19,9 +19,15 @@ $sql = "INSERT INTO event(event_header, event_desc, event_date, venue, no_people
 echo $sql;
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
+	$_SESSION['createEventMessage'] = 'EventCreatedSuccessfully';
+
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
+    $_SESSION['createEventMessage'] = 'EventDidntCreate';	
 }
 
 $conn->close();
+echo "<script type=\"text/javascript\">";
+echo "window.location = \"http://localhost/EventManagement/html/createEvent.html\"";
+echo "</script>";
 ?>
