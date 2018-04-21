@@ -21,16 +21,19 @@
 	$sqlUsers = "select count(*) as count from userlist where event_id = " ;
 	$sqlUsers = $sqlUsers . $_POST['event_id'];
 	$countresult = $conn->query($sql);
-	
-	if(
-
 	$sql = "INSERT INTO userlist(email_id, event_id, status) VALUES ( \"";
 	$sql = $sql . $_POST['email_id'] . "\", " . $_POST['event_id'] . ", ";
-	$sql = $sql . "1 )";
+	if($countresult['count'] < $_POST['count']){
+		$sql = $sql . "1 )";
+		$_SESSION['joinEventMessage'] = "added";
+		echo "<script>console.log( 'Debug Objects: " . $sql . "' );</script>";		
+	}else{
+		$sql = $sql . "0 )";	
+		$_SESSION['joinEventMessage'] = "waiting";
+	}
+
+
 	$result = $conn->query($sql);
-	
-	echo "<script>console.log( 'Debug Objects: " . $sql . "' );</script>";
-	
 	$conn->close();
 	echo "<script type=\"text/javascript\">";
 	echo "window.location = \"http://localhost/EventManagement/php/event_page.html?event_id=".$_POST['event_id']."\"";
