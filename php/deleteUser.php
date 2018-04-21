@@ -15,6 +15,7 @@
 	} 
 	echo "Connection successful";
 
+	
 
 	$sql = "delete from userlist where event_id = " . $_POST['event_id']  ;
 	$sql = $sql . " and email_id= \"" . $_POST['email_id'] . "\"";
