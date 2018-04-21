@@ -4,12 +4,13 @@ session_start();
 
 <html>
 <head>
-	<title>My Events</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Events</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <link rel="stylesheet" href="../css/style.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <div class = 'container'>
@@ -53,11 +54,12 @@ if ($result->num_rows > 0) {
 			  
 			</div> 
 		
-		</div>
+		
 	<?php
     }
+	echo "</div>";
 } else {
-    echo "No events to show";
+    echo "<div class = 'row' align='center'>No events to show</div>";
 }
 echo "</div><div class= 'container'>";
 $result2 = $conn->query($sql_my_waiting_events);
@@ -77,16 +79,19 @@ if ($result2->num_rows > 0) {
 			  </div>
 			  
 			</div> 
-		</div>
+		
 	<?php
+		
     }
+    echo "</div>";
 } else {
-    echo "<div class = 'row'>No events to show</div>";
+    echo "<div class = 'row' align='center'>No events to show</div>";
 }
+echo "</div>";
 $conn->close();
 ?>
 
-</div>
+
 </body>
 
 </html>
