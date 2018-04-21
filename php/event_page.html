@@ -10,6 +10,7 @@ session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -37,10 +38,14 @@ if ($result->num_rows > 0) {
 	echo "0 results";
 }
 
+$sqllist = "select first_name, last_name, L.event_id from userlist L, user U where L.email_id = U.email_id and L.event_id =" . $_GET['event_id'] ;
+$resultlist = $conn->query($sqllist);
+
 ?>
+
 <div class="container">
   <h2>Event Page</h2>
-  <form action="./event_page.html">
+  <form action="<?php echo $_SERVER['REQUEST_URI']   ?>">
     <div class="form-group">
       <label for="name">Name:</label>
       <p> <?php echo $row['event_header'] ?> </p>
@@ -61,39 +66,74 @@ if ($result->num_rows > 0) {
       <label for="comments">No of people</label>
 	  <p> <?php echo $row['no_people'] ?> </p>
     </div>
-	<div>
-	<label for="comments">Comments:</label>
-	<input type="text" class="form-control" id="desc" placeholder="Enter description" name="desc">
-	</div>
+	<div class="form-group">
+      <label for="comments">People List</label>
+	  <p> <?php 	  
+		if ($resultlist->num_rows > 0) {
+			// output data of each row
+			while($subs = $resultlist->fetch_assoc()) { 
+				echo $subs['first_name'] . " " . $subs['last_name'] . ", ";
+			}
+		}  
+	  ?> </p>
+    </div>
+	</form>
+	<form action="./insertComment.php" method="post">
+	<div class="form-group">
+      <label for="comment">Comments:</label>
+      <textarea name="comment" class="form-control" rows="5" id="comment"></textarea>
+    </div>
+	<input type="hidden" name="event_id" value=<?php echo $_GET['event_id'] ?>  >
+	<center><button type="submit" class="btn btn-default">Submit</button> </center>
   </form>
 </div>
 
 <!-- show comment here -->
 <div>
 
+	<div class="comments-container">
+	<h1>Comments</a></h1>
+		<ul id="comments-list" class="comments-list">
 <?php
-$sql = "select * from comment where event_id = " . $_GET['event_id'] ;
-$result1 = $conn->query($sql);
-if ($result->num_rows > 0) {
+
+$sqlCommnetList = "select first_name, last_name, curr_date, comment from comments C, user U where C.email_id = U.email_id and C.event_id = " . $_GET['event_id']  . " order by curr_date  ";
+
+
+$comments = $conn->query($sqlCommnetList);
+if ($comments->num_rows > 0) {
     // output data of each row
-    while($row = $result->fetch_assoc()) { ?>
-			<div class="row">
-			  <div class="col-md-4">
-				<div class="thumbnail">
-	
-					
-				  
+    while($comment = $comments->fetch_assoc()) { ?>
+			
+		<li>
+			<div class="comment-main-level">
+				
+				<div class="comment-avatar"></div>
+				
+				<div class="comment-box">
+					<div class="comment-head">
+						<h6 class="comment-name by-author">Name : <?php echo $comment['first_name'] . " " . $comment['last_name'] ?></h6>
+						<span>Time : <?php echo $comment['curr_date'] ?></span>
+						<i class="fa fa-reply"></i>
+						<i class="fa fa-heart"></i>
+					</div>
+					<div class="comment-content">
+						<?php echo $comment['comment'] ?>
+					</div>
 				</div>
-			  </div>
-			  
-			</div> 
+			</div>
+			
+			
+		</li>				
 	
 	<?php
     }
 } else {
     echo "0 results";
 }
+$conn->close();
 ?>
+</ul>
+</div>
 
 </div>
 
