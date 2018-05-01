@@ -23,13 +23,13 @@
 	    //echo "New record created successfully";
 		$conn->close();
 		echo "<script type=\"text/javascript\">";
-		echo "window.location = \"http://localhost/EventManagement/html/login.html\"";
+		echo "window.location = \"http://localhost/EventManagement/Signup/LogIn.html\"";
 		echo "</script>";
 	} else {
 	    //echo "Error: " . $sql . "<br>" . $conn->error;
 		$conn->close();
 		echo "<script type=\"text/javascript\">";
-		echo "window.location = \"http://localhost/EventManagement/html/signup.html?status=yes\"";
+		echo "window.location = \"http://localhost/EventManagement/Signup/LogIn.html?status=yes\"";
 		echo "</script>";
 	}
 ?>

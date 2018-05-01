@@ -1,9 +1,18 @@
+<!--
+<style>
+body {
+    background-image: url("../img/try1.png");
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+-->
 
-
+<div >
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">BISM</a>
+      <a class="navbar-brand" href="#">Pick Me Up</a>
     </div>
     <ul class="nav navbar-nav">
     <?php 
@@ -31,3 +40,5 @@
     </ul>
   </div>
 </nav>
+</div>
+

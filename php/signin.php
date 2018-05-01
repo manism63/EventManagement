@@ -46,7 +46,7 @@
 			$_SESSION['loginMessage'] = 'IncorrectPass';
 			//echo "<h1> password not correct </h1>";
 			echo "<script type=\"text/javascript\">";
-			echo "window.location = \"http://localhost/EventManagement/html/login.html\"";
+			echo "window.location = \"http://localhost/EventManagement/Signup/LogIn.html\"";
 			echo "</script>";
 		}
 
