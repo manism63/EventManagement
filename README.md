@@ -8,7 +8,7 @@ Steps to launch the website
 4.) Website url - http://localhost/EventManagement/HomePage/
 
 
-Project Partner
+Project Partners
 - Manish Maithani
 - Anurag Jain
 - Bhavik Thakkar
